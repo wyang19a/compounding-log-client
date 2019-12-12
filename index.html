@@ -42,10 +42,36 @@
   </form>
   <div>
     <h2>My products</h2>
-  <form id="get-products">
-  <button class="btn btn-primary">Get All Meds</button>
-  </form>
-  <p class="product-result"></p>
+    <form id="get-products">
+      <button class="btn btn-primary">Get All Meds</button>
+    </form>
+    <form id="get-one-product">
+      <input type="number" size="5" name="product[id]" placeholder="Product ID">
+      <button class="btn btn-primary">Get One Product</button>
+    </form>
+    <h2>Add Product</h2>
+    <form id="create-product">
+      <input type="text" name="product[name]" placeholder="Name">
+      <input type="text" name="product[strength]" placeholder="Strength">
+      <input type="number" name="product[quantity]" placeholder="Quantity">
+      <input type="text" name="product[unit]" placeholder="Unit">
+      <button class="btn btn-primary">Add Product</button>
+    </form>
+    <h3>Update Product</h3>
+    <form id="update-product">
+      <input type="number" size="5" name="product[id]" placeholder="Product ID">
+      <input type="text" name="product[name]" placeholder="Name">
+      <input type="text" name="product[strength]" placeholder="Strength">
+      <input type="number" name="product[quantity]" placeholder="Quantity">
+      <input type="text" name="product[unit]" placeholder="Unit">
+      <button class="btn btn-primary">Update Product</button>
+    </form>
+    <h2>Delete Product</h2>
+    <form id="delete-product">
+      <input type="number" size="5" name="product[id]" placeholder="Product ID">
+      <button class="btn btn-danger">Delete Product</button>
+    </form>
+    <p class="product-result"></p>
   </div>
 </body>
 
