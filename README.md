@@ -1,1 +1,1 @@
-Compounding log client
+Pharmacy client

@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Rails Pharmacy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-      <h1>Browser Template</h1>
-    </body>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <h1>Rails Pharmacy</h1>
+  </br>
+  <p id="message"></p>
+  <h3>Sign Up</h3>
+  <form id="sign-up">
+    <input type="email" name="credentials[email]" placeholder="Email">
+    <input type="password" name="credentials[password]" placeholder="Password">
+    <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+    <button class="btn btn-primary">Submit</button>
+  </form>
+  <h3>Sign in</h3>
+  <form id="sign-in">
+    <input type="email" size="15" name="credentials[email]" placeholder="Email">
+    <input type="password" size="15" name="credentials[password]" placeholder="Password">
+    <button class="btn btn-primary">Submit</button>
+  </form>
+  <form id="change-password" class="change-password">
+    <h3>Change Password</h3>
+    <input type="text" size="15" name="passwords[old]" placeholder="old password">
+    <input type="text" size="15" name="passwords[new]" placeholder="new password">
+    <button class="btn btn-primary">Submit</button>
+  </form>
+  <h3>Sign Out</h3>
+  <form id="sign-out">
+    <button class="btn btn-danger afterSignIn">Sign Out</button>
+  </form>
+  <div>
+    <h2>My products</h2>
+  <form id="get-products">
+  <button class="btn btn-primary">Get All Meds</button>
+  </form>
+  <p class="product-result"></p>
+  </div>
+</body>
+
 </html>
