@@ -12,14 +12,25 @@ const getAllProducts = () => {
 }
 
 const getOneProduct = (formData) => {
+  console.log('FormData.product is' + formData.product)
   return $.ajax({
-    url: config.apiUrl + '/products/' + formData.product.id,
+    url: config.apiUrl + '/products/' + formData.product.name,
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
     }
   })
 }
+// const getOneProductByID = (formData) => {
+//   console.log('FormData.product is' + formData.product)
+//   return $.ajax({
+//     url: config.apiUrl + '/products/' + formData.product.id,
+//     method: 'GET',
+//     headers: {
+//       Authorization: `Token token=${store.user.token}`
+//     }
+//   })
+// }
 
 const createProduct = (formData) => {
   return $.ajax({
@@ -58,4 +69,5 @@ module.exports = {
   createProduct,
   updateProduct,
   deleteProduct
+  // getOneProductByID
 }

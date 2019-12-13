@@ -17,6 +17,7 @@
   <h1>Rails Pharmacy</h1>
   </br>
   <p id="message"></p>
+  <div class="before-auth">
   <h3>Sign Up</h3>
   <form id="sign-up">
     <input type="email" name="credentials[email]" placeholder="Email">
@@ -30,6 +31,8 @@
     <input type="password" size="15" name="credentials[password]" placeholder="Password">
     <button class="btn btn-primary">Submit</button>
   </form>
+</div>
+<div class="after-auth">
   <form id="change-password" class="change-password">
     <h3>Change Password</h3>
     <input type="text" size="15" name="passwords[old]" placeholder="old password">
@@ -40,18 +43,19 @@
   <form id="sign-out">
     <button class="btn btn-danger afterSignIn">Sign Out</button>
   </form>
-  <div>
+  <button id="show-product-options" class="btn btn-primary">Show Products Options</button>
+  <div id="product-options">
     <h2>My products</h2>
     <form id="get-products">
       <button class="btn btn-primary">Get All Meds</button>
     </form>
     <form id="get-one-product">
-      <input type="number" size="5" name="product[id]" placeholder="Product ID">
+      <input onkeyup="this.value = this.value.toLowerCase();" type="text" name="product[name]" placeholder="Product Name">
       <button class="btn btn-primary">Get One Product</button>
     </form>
     <h2>Add Product</h2>
     <form id="create-product">
-      <input type="text" name="product[name]" placeholder="Name">
+      <input onkeyup="this.value = this.value.toLowerCase();" type="text" name="product[name]" placeholder="Name">
       <input type="text" name="product[strength]" placeholder="Strength">
       <input type="number" name="product[quantity]" placeholder="Quantity">
       <input type="text" name="product[unit]" placeholder="Unit">
@@ -72,6 +76,10 @@
       <button class="btn btn-danger">Delete Product</button>
     </form>
     <p class="product-result"></p>
+  </div>
+  <div class="ingredient-option">
+
+  </div>
   </div>
 </body>
 

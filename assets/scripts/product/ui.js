@@ -1,13 +1,18 @@
+$('#product-options').hide()
+
 const onGetProductsSuccess = formData => {
   const products = formData.products
   let productHtml = ''
 
   products.forEach(products => {
+    // console.log(products)
     productHtml += `
-      <h3>Product ID: ${products.id}</h3>
-      <ul>
-      <li>Name: ${products.name}</li>
-      </ul>
+    <h3>Product ID: ${products.id}</h3>
+    <ul>
+    <li>Name: ${products.name} ${products.strength}</li>
+    <li>Quantity: ${products.quantity} ${products.unit}</li>
+    <li>User Email: ${products.user.email}</li>
+    </ul>
     `
   })
   $('.product-result').html(productHtml)
@@ -15,12 +20,29 @@ const onGetProductsSuccess = formData => {
 
 const onGetProductSuccess = formData => {
   const product = formData.product
-  const productHtml = `
+  let productHtml = `
    <h3>Product ID: ${product.id}</h3>
    <ul>
-   <li>Name: ${product.name}</li>
-   </ul>
-  `
+   <li>Name: ${product.name} ${product.strength}</li>
+   <li>Quantity: ${product.quantity} ${product.unit}</li>
+ <li>User Email: ${product.user.email}</li>
+
+    </ul>
+    <h2>Ingredients</h2>
+    `
+  for (let i = 0; i < product.ingredients.length; i++) {
+    const ingredient = product.ingredients[i]
+    const recipe = product.recipes[i]
+
+    productHtml += `
+      <ul>
+      <li>${ingredient.name} </br>
+      Amount: ${recipe.amount} ${recipe.unit} </br>
+      Form: ${ingredient.form}</li>
+      </ul>
+      `
+    // productHtml += product.ingredients.forEach(name)
+}
   $('.product-result').html(productHtml)
   $('form').trigger('reset')
 }
@@ -36,7 +58,9 @@ const onCreateProductSuccess = formData => {
    <h2>CREATED!</h2>
    <h3>Product ID: ${product.id}</h3>
    <ul>
-   <li>Name: ${product.name}</li>
+   <li>Name: ${product.name} ${product.strength}</li>
+   <li>Quantity: ${product.quantity} ${product.unit}</li>
+   <li>User Email: ${product.user.email}</li>
    </ul>
   `
   $('.product-result').html(productHtml)
@@ -52,9 +76,9 @@ const onUpdateProductSuccess = formData => {
   const product = formData.product
   const productHtml = `
   <h2>UPDATED!</h2>
-  <h3>Product ID: ${product.id}</h3>
-  <ul>
-  <li>Name: ${product.name}</li>
+  <li>Name: ${product.name} ${product.strength}</li>
+  <li>Quantity: ${product.quantity} ${product.unit}</li>
+  <li>Name: ${product.user_id}</li>
   </ul>
   `
   $('.product-result').html(productHtml)

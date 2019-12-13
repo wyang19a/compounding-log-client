@@ -13,7 +13,7 @@ const onGetOneProduct = event => {
 
   const form = event.target
   const formData = getFormFields(form)
-  // console.log(formData)
+  console.log('Formdata is' + formData)
   api.getOneProduct(formData)
     .then(ui.onGetProductSuccess)
     .catch(ui.onGetProductFailure)
@@ -52,12 +52,17 @@ const onDeleteProduct = event => {
     .catch(ui.onDeleteProductFailure)
 }
 
+const onShowProductOption = () => {
+  $('#product-options').show()
+}
+
 const addHandlers = event => {
   $('#get-products').on('submit', onGetProducts)
   $('#get-one-product').on('submit', onGetOneProduct)
   $('#create-product').on('submit', onCreateProduct)
   $('#update-product').on('submit', onUpdateProduct)
   $('#delete-product').on('submit', onDeleteProduct)
+  $('#show-product-options').on('click', onShowProductOption)
 }
 module.exports = {
   addHandlers
