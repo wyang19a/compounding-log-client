@@ -44,11 +44,16 @@ const onSignOut = event => {
     .then(ui.onSignOutSuccess)
     .catch(console.error)
 }
+
+const onShowAccount = () => {
+  $('#change-password').show()
+}
 const addHandlers = event => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
+  $('#show-account-options').on('click', onShowAccount)
 }
 module.exports = {
   addHandlers

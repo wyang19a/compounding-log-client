@@ -1,0 +1,62 @@
+
+
+<table id="product-table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">ID</th>
+      <th class="th-sm">Name</th>
+      <th class="th-sm">Form</th>
+      <th class="th-sm">Creator</th>
+      <th class="th-sm">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <section data-id="{{product.id}}">
+        <tr>
+          <td>{{product.id}}</td>
+          <td>{{product.name}} {{product.strength}}</td>
+          <td>{{product.form}}</td>
+          <td>{{product.user.email}}</td>
+          <td>
+            <button data-id="{{product.id}}" class="btn btn-primary get-products-btn">Go Back</button>
+            <button data-id="{{product.id}}" class="btn btn-primary add-ing-btn">Add ingredient</button>
+          </td>
+        </tr>
+      </section>
+  </tbody>
+  </table>
+
+
+
+
+  <table id="product-table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th class="th-sm">ID</th>
+        <th class="th-sm">Name</th>
+        <th class="th-sm">Strength</th>
+        <th class="th-sm">Form</th>
+        <th class="th-sm">Type</th>
+        <th class="th-sm">Action</th>
+      </tr>
+    </thead>
+    <h5>Ingredients</h5>
+    <tbody>
+        {{#each product.ingredients as |ingredient|}}
+        <section data-id="{{product.id}}">
+          <tr>
+            <td>{{ingredient.id}}</td>
+            <td>{{ingredient.name}}</td>
+            <td>{{ingredient.strength}}</td>
+            <td>{{ingredient.form}}</td>
+            <td>{{ingredient.ing_type}}</td>
+            <td>
+              <button data-id="{{ingredient.id}}" class="btn btn-primary rcp-show-btn">Show</button>
+              <button data-id="{{ingredient.id}}" class="btn btn-primary rcp-update-btn">Update</button>
+              <button data-id="{{ingredient.id}}" class="btn btn-danger rcp-delete-btn">Delete</button>
+            </td>
+          </tr>
+        </section>
+        {{/each}}
+    </tbody>
+    </table>

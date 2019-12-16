@@ -1,50 +1,39 @@
+const productsTemplate = require('../templates/products-listing.handlebars')
+const productTemplate = require('../templates/product-listing.handlebars')
+const ingSelectTemplate = require('../templates/ingredient-select.handlebars')
+
 $('#product-options').hide()
+$('#update-product').hide()
+$('#create-product').hide()
 
-const onGetProductsSuccess = formData => {
-  const products = formData.products
-  let productHtml = ''
-
-  products.forEach(products => {
-    // console.log(products)
-    productHtml += `
-    <h3>Product ID: ${products.id}</h3>
-    <ul>
-    <li>Name: ${products.name} ${products.strength}</li>
-    <li>Quantity: ${products.quantity} ${products.unit}</li>
-    <li>User Email: ${products.user.email}</li>
-    </ul>
-    `
-  })
-  $('.product-result').html(productHtml)
+const onGetProductsSuccess = data => {
+  $('#product-options').show()
+  $('#ingredient-options').hide()
+  $('#recipe-options').hide()
+  const productsHtml = productsTemplate({ products: data.products })
+  $('.product-result').html(productsHtml)
 }
 
 const onGetProductSuccess = formData => {
-  const product = formData.product
-  let productHtml = `
-   <h3>Product ID: ${product.id}</h3>
-   <ul>
-   <li>Name: ${product.name} ${product.strength}</li>
-   <li>Quantity: ${product.quantity} ${product.unit}</li>
- <li>User Email: ${product.user.email}</li>
-
-    </ul>
-    <h2>Ingredients</h2>
-    `
-  for (let i = 0; i < product.ingredients.length; i++) {
-    const ingredient = product.ingredients[i]
-    const recipe = product.recipes[i]
-
-    productHtml += `
-      <ul>
-      <li>${ingredient.name} </br>
-      Amount: ${recipe.amount} ${recipe.unit} </br>
-      Form: ${ingredient.form}</li>
-      </ul>
-      `
-    // productHtml += product.ingredients.forEach(name)
-}
+  // console.log(formData.product.recipes.amount)
+  // console.log(formData)
+  const productHtml = productTemplate({ product: formData.product })
   $('.product-result').html(productHtml)
-  $('form').trigger('reset')
+  let testHtml = ''
+  $('.product-result').append(() => {
+    const recipe = formData.product.recipes
+    const ingredient = formData.product.ingredients
+    for (let i = 0; i < recipe.length; i++) {
+      const match = recipe => recipe.ingredient_id === ingredient[i].id
+      testHtml +=
+    `
+    <li>${ingredient[i].name} ${recipe.find(match).amount} ${recipe.find(match).unit}</li>
+    `
+    }
+    return testHtml
+  }
+  )
+  // $('form').trigger('reset')
 }
 
 const onGetProductFailure = () => {
@@ -52,36 +41,13 @@ const onGetProductFailure = () => {
   $('.product-result').html(message)
 }
 
-const onCreateProductSuccess = formData => {
-  const product = formData.product
-  const productHtml = `
-   <h2>CREATED!</h2>
-   <h3>Product ID: ${product.id}</h3>
-   <ul>
-   <li>Name: ${product.name} ${product.strength}</li>
-   <li>Quantity: ${product.quantity} ${product.unit}</li>
-   <li>User Email: ${product.user.email}</li>
-   </ul>
-  `
-  $('.product-result').html(productHtml)
-  $('form').trigger('reset')
-}
-
 const onCreateProductFailure = () => {
   const message = 'Please try again.'
   $('.product-result').html(message)
 }
 
-const onUpdateProductSuccess = formData => {
-  const product = formData.product
-  const productHtml = `
-  <h2>UPDATED!</h2>
-  <li>Name: ${product.name} ${product.strength}</li>
-  <li>Quantity: ${product.quantity} ${product.unit}</li>
-  <li>Name: ${product.user_id}</li>
-  </ul>
-  `
-  $('.product-result').html(productHtml)
+const onUpdateProductSuccess = () => {
+  $('#update-product').hide()
   $('form').trigger('reset')
 }
 
@@ -90,25 +56,24 @@ const onUpdateProductFailre = () => {
   $('.product-result').html(message)
 }
 
-const onDeleteProductSuccess = formData => {
-  const message = 'Product was deleted'
-  $('.product-result').html(message)
-  $('form').trigger('reset')
-}
-
 const onDeleteProductFailure = () => {
   const message = 'Please try again.'
   $('.product-result').html(message)
+}
+
+const onShowIngredientSelectTable = data => {
+  const ingredientsHtml = ingSelectTemplate({ ingredients: data.ingredients })
+  $('.select-ingredient-table').html(ingredientsHtml)
 }
 
 module.exports = {
   onGetProductsSuccess,
   onGetProductSuccess,
   onGetProductFailure,
-  onCreateProductSuccess,
   onCreateProductFailure,
   onUpdateProductSuccess,
   onUpdateProductFailre,
-  onDeleteProductSuccess,
-  onDeleteProductFailure
+  // onDeleteProductSuccess,
+  onDeleteProductFailure,
+  onShowIngredientSelectTable
 }

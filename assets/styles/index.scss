@@ -1,5 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
-.new-product-input {
-  text-transform: lowercase;
+.dropdown-toggle {
+border-radius: 5em;
+}
+
+#product-table tbody {
+ overflow:auto;
+ height: 150px;
 }

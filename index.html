@@ -2,84 +2,153 @@
 <html>
 
 <head>
-  <title>Rails Pharmacy</title>
+  <title>GGGGG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Do not add `link` tags-->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
   <!-- Do not add `script` tags-->
   <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
   <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
 </head>
-
 <body>
+  <div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog" aria-labelledby="addIngredientModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addIngredientModalLabel">New ingredient</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="create-recipe">
+      <div class="modal-body">
+            <label class="col-form-label">Product:</label>
+            <input id="productId1" type="number" name="recipe[product_id]">
+            <label class="col-form-label">Ingredient:</label>
+            <input id="ingredientId1" type="number" name="recipe[ingredient_id]">
+            <label class="col-form-label">Amount:</label>
+            <input type="text" name="recipe[amount]" placeholder="Amount">
+            <label class="col-form-label">Unit:</label>
+            <input type="text" name="recipe[unit]" placeholder="Unit">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
   <h1>Rails Pharmacy</h1>
   </br>
   <p id="message"></p>
   <div class="before-auth">
-  <h3>Sign Up</h3>
-  <form id="sign-up">
-    <input type="email" name="credentials[email]" placeholder="Email">
-    <input type="password" name="credentials[password]" placeholder="Password">
-    <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-    <button class="btn btn-primary">Submit</button>
-  </form>
-  <h3>Sign in</h3>
-  <form id="sign-in">
-    <input type="email" size="15" name="credentials[email]" placeholder="Email">
-    <input type="password" size="15" name="credentials[password]" placeholder="Password">
-    <button class="btn btn-primary">Submit</button>
-  </form>
-</div>
-<div class="after-auth">
-  <form id="change-password" class="change-password">
-    <h3>Change Password</h3>
-    <input type="text" size="15" name="passwords[old]" placeholder="old password">
-    <input type="text" size="15" name="passwords[new]" placeholder="new password">
-    <button class="btn btn-primary">Submit</button>
-  </form>
-  <h3>Sign Out</h3>
-  <form id="sign-out">
-    <button class="btn btn-danger afterSignIn">Sign Out</button>
-  </form>
-  <button id="show-product-options" class="btn btn-primary">Show Products Options</button>
-  <div id="product-options">
-    <h2>My products</h2>
-    <form id="get-products">
-      <button class="btn btn-primary">Get All Meds</button>
+    <h3>Sign Up</h3>
+    <form id="sign-up">
+      <input type="email" name="credentials[email]" placeholder="Email">
+      <input type="password" name="credentials[password]" placeholder="Password">
+      <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+      <button class="btn btn-primary">Submit</button>
     </form>
-    <form id="get-one-product">
-      <input onkeyup="this.value = this.value.toLowerCase();" type="text" name="product[name]" placeholder="Product Name">
-      <button class="btn btn-primary">Get One Product</button>
+    <h3>Sign in</h3>
+    <form id="sign-in">
+      <input type="email" size="15" name="credentials[email]" placeholder="Email">
+      <input type="password" size="15" name="credentials[password]" placeholder="Password">
+      <button class="btn btn-primary">Submit</button>
     </form>
-    <h2>Add Product</h2>
-    <form id="create-product">
-      <input onkeyup="this.value = this.value.toLowerCase();" type="text" name="product[name]" placeholder="Name">
-      <input type="text" name="product[strength]" placeholder="Strength">
-      <input type="number" name="product[quantity]" placeholder="Quantity">
-      <input type="text" name="product[unit]" placeholder="Unit">
-      <button class="btn btn-primary">Add Product</button>
+  </div>
+  <div class="after-auth">
+    <form id="change-password">
+      <h3>Change Password</h3>
+      <input type="text" size="15" name="passwords[old]" placeholder="old password">
+      <input type="text" size="15" name="passwords[new]" placeholder="new password">
+      <button class="btn btn-primary">Submit</button>
     </form>
-    <h3>Update Product</h3>
+    <button id="show-account-options">Account</button>
+    <h3>Sign Out</h3>
+    <form id="sign-out">
+      <button class="btn btn-danger afterSignIn">Sign Out</button>
+    </form>
+    <button class="btn btn-primary get-products">Show Products</button>
+    <button id="get-ingredients" class="btn btn-primary">Show Ingredient Options</button>
+    <button id="show-recipe-options" class="btn btn-primary">Show Recipe Options</button>
+    <div id="product-options">
+      <h2>My products</h2>
+      <button class="create-product">New Proudct</button>
+      <div class="product-result"></div>
+      <div class="select-ingredient-table"></div>
     <form id="update-product">
-      <input type="number" size="5" name="product[id]" placeholder="Product ID">
+      <div id="productId"></div>
+      <!-- <input class="id-input" type="number" name="product[id]" placeholder="Product ID"> -->
       <input type="text" name="product[name]" placeholder="Name">
-      <input type="text" name="product[strength]" placeholder="Strength">
-      <input type="number" name="product[quantity]" placeholder="Quantity">
-      <input type="text" name="product[unit]" placeholder="Unit">
+      <input type="text" name="product[strength]" placeholder="Strength/unit">
+      <input type="text" name="product[form]" placeholder="Form">
       <button class="btn btn-primary">Update Product</button>
     </form>
-    <h2>Delete Product</h2>
-    <form id="delete-product">
-      <input type="number" size="5" name="product[id]" placeholder="Product ID">
-      <button class="btn btn-danger">Delete Product</button>
-    </form>
-    <p class="product-result"></p>
-  </div>
-  <div class="ingredient-option">
-
-  </div>
+      <form id="create-product">
+        <!-- onkeyup="this.value = this.value.toLowerCase();" -->
+          <input type="text" name="product[name]" placeholder="Name">
+          <input type="text" name="product[strength]" placeholder="Strength/unit">
+          <input type="text" name="product[form]" placeholder="Form">
+          <button class="btn btn-primary">Add Product</button>
+      </form>
+    </div>
+    <div id="ingredient-options">
+      <h2>My Ingredients</h2>
+      <button class="create-ingredient">New Ingredient</button>
+      <p class="ingredient-result"></p>
+      <form id="update-ingredient">
+        <h3>Update Ingredient</h3>
+        <input type="text" name="ingredient[name]" placeholder="Name">
+        <input type="text" name="ingredient[strength]" placeholder="Strength/unit">
+        <input type="text" name="ingredient[form]" placeholder="Form">
+        <input type="text" name="ingredient[ing_type]" placeholder="Type">
+        <button class="btn btn-primary">Update Ingredient</button>
+      </form>
+      <form id="create-ingredient">
+        <h2>Add Ingredient</h2>
+        <!--  onkeyup="this.value = this.value.toLowerCase();" -->
+        <input type="text" name="ingredient[name]" placeholder="Name">
+        <input type="text" name="ingredient[strength]" placeholder="Strength">
+        <input type="text" name="ingredient[form]" placeholder="Form">
+        <input type="text" name="ingredient[ing_type]" placeholder="Type">
+        <button class="btn btn-primary">Add Ingredient</button>
+      </form>
+    </div>
+    <div id="recipe-options">
+      <h2>My Recipes</h2>
+      <form id="get-recipes">
+        <button class="btn btn-primary">Get All Recipes</button>
+      </form>
+      <form id="get-one-recipe">
+        <input type="number" name="recipe[id]" placeholder="Recipe ID">
+        <button class="btn btn-primary">Get One Recipe</button>
+      </form>
+      <h2>Add Recipe</h2>
+      <!-- <form id="create-recipe">
+        <input type="number" name="recipe[product_id]" placeholder="Product ID">
+        <input type="number" name="recipe[ingredient_id]" placeholder="Ingredient ID">
+        <input type="text" name="recipe[amount]" placeholder="Amount">
+        <input type="text" name="recipe[unit]" placeholder="Unit">
+        <button class="btn btn-primary">Add Recipe</button>
+      </form> -->
+      <h3>Update Recipe</h3>
+      <form id="update-recipe">
+        <input type="number" size="5" name="recipe[id]" placeholder="Recipe ID">
+        <input type="number" name="recipe[product_id]" placeholder="Product ID">
+        <input type="number" name="recipe[ingredient_id]" placeholder="Ingredient ID">
+        <input type="number" name="recipe[amount]" placeholder="Amount">
+        <input type="text" name="recipe[unit]" placeholder="Unit">
+        <button class="btn btn-primary">Update Recipe</button>
+      </form>
+      <h2>Delete Recipe</h2>
+      <form id="delete-recipe">
+        <input type="number" size="5" name="recipe[id]" placeholder="Ingredient ID">
+        <button class="btn btn-danger">Delete Recipe</button>
+      </form>
+      <p class="recipe-result"></p>
+    </div>
   </div>
 </body>
 

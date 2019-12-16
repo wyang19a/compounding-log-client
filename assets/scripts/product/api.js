@@ -11,10 +11,10 @@ const getAllProducts = () => {
   })
 }
 
-const getOneProduct = (formData) => {
-  console.log('FormData.product is' + formData.product)
+const getOneProduct = id => {
+  // console.log('FormData.product is' + formData.product)
   return $.ajax({
-    url: config.apiUrl + '/products/' + formData.product.name,
+    url: config.apiUrl + '/products/' + id,
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
@@ -43,9 +43,9 @@ const createProduct = (formData) => {
   })
 }
 
-const updateProduct = (formData) => {
+const updateProduct = (formData, productId) => {
   return $.ajax({
-    url: config.apiUrl + '/products/' + formData.product.id,
+    url: config.apiUrl + '/products/' + productId,
     method: 'PATCH',
     headers: {
       Authorization: `Token token=${store.user.token}`
@@ -54,20 +54,20 @@ const updateProduct = (formData) => {
   })
 }
 
-const deleteProduct = (formData) => {
+const deleteProduct = id => {
   return $.ajax({
-    url: config.apiUrl + '/products/' + formData.product.id,
+    url: config.apiUrl + '/products/' + id,
     method: 'DELETE',
     headers: {
       Authorization: `Token token=${store.user.token}`
     }
   })
 }
+
 module.exports = {
   getAllProducts,
   getOneProduct,
   createProduct,
   updateProduct,
   deleteProduct
-  // getOneProductByID
 }

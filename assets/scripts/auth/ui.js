@@ -7,6 +7,7 @@ const store = require('../store')
 //   $('.before-auth').hide()
 // }
 $('.after-auth').hide()
+$('#change-password').hide()
 
 const onSuccess = message => {
   $('#message')

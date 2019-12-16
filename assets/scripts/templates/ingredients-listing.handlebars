@@ -1,0 +1,34 @@
+
+
+<table id="ingredient-table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">ID</th>
+      <th class="th-sm">Name</th>
+      <th class="th-sm">Strength</th>
+      <th class="th-sm">Form</th>
+      <th class="th-sm">Type</th>
+      <th class="th-sm">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each ingredients as |ingredient|}}
+      <section data-id="{{ingredient.id}}">
+        <tr>
+          <td>{{ingredient.id}}</td>
+          <td>{{ingredient.name}}</td>
+          <td>{{ingredient.strength}}</td>
+          <td>{{ingredient.form}}</td>
+          <td>{{ingredient.ing_type}}</td>
+          <td>
+
+                <button data-id="{{ingredient.id}}" class="btn btn-primary show-btn">Show</button>
+                <button data-id="{{ingredient.id}}" class="btn btn-primary update-btn">Update</button>
+                <button data-id="{{ingredient.id}}" class="btn btn-danger delete-btn">Delete</button>
+
+          </td>
+        </tr>
+      </section>
+    {{/each}}
+  </tbody>
+</table>
