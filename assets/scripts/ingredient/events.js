@@ -26,6 +26,7 @@ const onCreateIngredient = event => {
     .then(function (data) {
       onGetIngredients(event)
     })
+    .then($('form').trigger('reset'))
     .catch(ui.onCreateIngredientFailure)
 }
 

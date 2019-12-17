@@ -2,18 +2,23 @@ const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
 const store = require('../store')
-// const recipeApi = require('../recipe/api')
 const ingredientApi = require('../ingredient/api')
 
 const onGetProducts = event => {
   event.preventDefault()
   api.getAllProducts()
     .then(ui.onGetProductsSuccess)
+  store.productId = ''
+  store.ingredientId = ''
+  store.productRcpId = ''
+  store.ingredientRcpId = ''
+  $('.select-ingredient-table').html('')
 }
 // $('.show-btn').tooltip(options)
 const onGetOneProduct = event => {
   $('#update-product').hide()
   const productId = $(event.target).data('id')
+  store.productId = productId
   api.getOneProduct(productId)
     .then(ui.onGetProductSuccess)
     .catch(ui.onGetProductFailure)
@@ -30,6 +35,7 @@ const onCreateProduct = event => {
     .then(function (data) {
       onGetProducts(event)
     })
+    .then($('form').trigger('reset'))
     .catch(ui.onCreateProductFailure)
 }
 
@@ -71,36 +77,45 @@ const onShowCreateProduct = event => {
 
 const onAddIngToRecipe = event => {
   const productRcpId = $(event.target).data('id')
+  const productId = store.productId
   store.productRcpId = productRcpId
   api.getOneProduct(productRcpId)
     .then(ui.onGetProductSuccess)
     .then(ingredientApi.getAllIngredients()
       .then(ui.onShowIngredientSelectTable)
     )
+    .then(
+      api.getOneProduct(productId)
+        .then(ui.onGetProductSuccess))
     .catch(ui.onGetProductFailure)
 }
 
-// $('#addIngredientModal').on('show.bs.modal', function (event) {
-//   const productId = store.productRcpId // Extract info from data-* attributes
-//   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-//   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-//   const modal = $(this)
-//   console.log(productId)
-//   modal.find('.modal-body input').val(recipient)
-// })
 const onSelectIngredient = event => {
-  console.log('CLICKED')
-
   const ingredientId = $(event.target).data('id')
   store.ingredientRcpId = ingredientId
   const productId = store.productRcpId
   console.log(productId + ' ' + ingredientId)
   $('#productId1').val(productId)
   $('#ingredientId1').val(ingredientId)
-//   // recipeApi.createRecipe(productId, ingredientId)
-//   //   .then()
-//   //   .catch()
-//   debugger
+}
+
+const onDeleteRcp = event => {
+  // get ingredient recipes that matches with saved productId DELETE
+  // console.log(store.productId)
+  const ingredientId = $(event.target).data('id')
+  store.ingredientId = ingredientId
+  ingredientApi.getOneIngredient(ingredientId)
+    .then(ui.matchRecipe)
+    .then(function (productId) {
+      productId = store.productId
+      api.getOneProduct(productId)
+        .then(ui.onGetProductSuccess)
+    })
+    .catch()
+}
+
+const onClose = () => {
+  $('form').trigger('reset')
 }
 
 const addHandlers = event => {
@@ -114,6 +129,8 @@ const addHandlers = event => {
   $('.product-result').on('click', '.delete-btn', onDeleteProduct)
   $('.product-result').on('click', '.add-ing-btn', onAddIngToRecipe)
   $('.select-ingredient-table').on('click', '.select-ing-button', onSelectIngredient)
+  $('.product-result').on('click', '.rcp-delete-btn', onDeleteRcp)
+  $('.clear-data').on('click', onClose)
 }
 module.exports = {
   addHandlers

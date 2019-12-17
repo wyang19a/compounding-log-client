@@ -1,6 +1,8 @@
 const productsTemplate = require('../templates/products-listing.handlebars')
 const productTemplate = require('../templates/product-listing.handlebars')
 const ingSelectTemplate = require('../templates/ingredient-select.handlebars')
+const store = require('../store')
+const recipeApi = require('../recipe/api')
 
 $('#product-options').hide()
 $('#update-product').hide()
@@ -27,7 +29,7 @@ const onGetProductSuccess = formData => {
       const match = recipe => recipe.ingredient_id === ingredient[i].id
       testHtml +=
     `
-    <li>${ingredient[i].name} ${recipe.find(match).amount} ${recipe.find(match).unit}</li>
+    <li>${ingredient[i].name} ${recipe.find(recipe => recipe.ingredient_id === ingredient[i].id).amount} ${recipe.find(match).unit}</li>
     `
     }
     return testHtml
@@ -65,6 +67,13 @@ const onShowIngredientSelectTable = data => {
   const ingredientsHtml = ingSelectTemplate({ ingredients: data.ingredients })
   $('.select-ingredient-table').html(ingredientsHtml)
 }
+const matchRecipe = data => {
+  // debugger
+  const recipe = data.ingredient.recipes
+  const product = store.productId
+  const recipeId = recipe.find(recipe => recipe.product_id === product).id
+  recipeApi.deleteRecipe(recipeId)
+}
 
 module.exports = {
   onGetProductsSuccess,
@@ -75,5 +84,6 @@ module.exports = {
   onUpdateProductFailre,
   // onDeleteProductSuccess,
   onDeleteProductFailure,
-  onShowIngredientSelectTable
+  onShowIngredientSelectTable,
+  matchRecipe
 }

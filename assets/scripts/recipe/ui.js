@@ -61,11 +61,6 @@ const onCreateRecipeSuccess = formData => {
   const recipeHtml = `
    <h2>CREATED!</h2>
    <h3>Recipe ID: ${recipe.id}</h3>
-   <ul>
-   <li>Name: ${recipe.name} ${recipe.strength}</li>
-   <li>Quantity: ${recipe.quantity} ${recipe.unit}</li>
-   <li>User Email: ${recipe.user.email}</li>
-   </ul>
   `
   $('.recipe-result').html(recipeHtml)
   $('form').trigger('reset')

@@ -43,9 +43,9 @@ const updateRecipe = (formData) => {
   })
 }
 
-const deleteRecipe = (formData) => {
+const deleteRecipe = id => {
   return $.ajax({
-    url: config.apiUrl + '/recipes/' + formData.recipe.id,
+    url: config.apiUrl + '/recipes/' + id,
     method: 'DELETE',
     headers: {
       Authorization: `Token token=${store.user.token}`
