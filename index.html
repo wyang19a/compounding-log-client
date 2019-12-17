@@ -1,17 +1,138 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Rails app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-      <h1>Browser Template</h1>
-    </body>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog" aria-labelledby="addIngredientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addIngredientModalLabel">New ingredient</h5>
+          <button type="button" class="close clear-form" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="create-recipe">
+          <div class="modal-body">
+            <label class="col-form-label">Product:</label>
+            <input id="productId1" type="number" name="recipe[product_id]">
+            <label class="col-form-label">Ingredient:</label>
+            <input id="ingredientId1" type="number" name="recipe[ingredient_id]">
+            <label class="col-form-label">Amount:</label>
+            <input type="text" name="recipe[amount]" placeholder="Amount">
+            <label class="col-form-label">Unit:</label>
+            <input type="text" name="recipe[unit]" placeholder="Unit">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary clear-data" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary" data-target="submit-ingredient">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <h1>Rails Pharmacy</h1>
+  </br>
+        <div id="message"></div>
+        <div class="before-auth">
+          <h3>Sign Up</h3>
+          <form id="sign-up">
+            <input type="email" name="credentials[email]" placeholder="Email">
+            <input type="password" name="credentials[password]" placeholder="Password">
+            <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+            <button class="btn btn-primary">Submit</button>
+          </form>
+          <h3>Sign in</h3>
+          <form id="sign-in">
+            <input type="email" size="15" name="credentials[email]" placeholder="Email">
+            <input type="password" size="15" name="credentials[password]" placeholder="Password">
+            <button class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="after-auth">
+          <form id="change-password">
+            <h3>Change Password</h3>
+            <input type="text" size="15" name="passwords[old]" placeholder="old password">
+            <input type="text" size="15" name="passwords[new]" placeholder="new password">
+            <button class="btn btn-primary">Submit</button>
+          </form>
+          <button id="show-account-options">Account</button>
+          <h3>Sign Out</h3>
+          <form id="sign-out">
+            <button class="btn btn-danger afterSignIn">Sign Out</button>
+          </form>
+          <button class="btn btn-primary get-products">Show Products</button>
+          <button id="get-ingredients" class="btn btn-primary">Show Ingredients</button>
+          <button id="show-recipe-options" class="btn btn-primary">Recipe</button>
+          <div id="product-options">
+        <h2>My products</h2>
+        <button class="create-product">New Product</button>
+      <div class="result-table">
+        <div class="product-result"></div>
+        <div class="select-ingredient-table"></div>
+      </div>
+      <form id="update-product">
+        <div id="productId"></div>
+        <!-- <input class="id-input" type="number" name="product[id]" placeholder="Product ID"> -->
+        <input type="text" name="product[name]" placeholder="Name">
+        <input type="text" name="product[strength]" placeholder="Strength/unit">
+        <input type="text" name="product[form]" placeholder="Form">
+        <button class="btn btn-primary">Update Product</button>
+      </form>
+      <form id="create-product">
+        <!-- onkeyup="this.value = this.value.toLowerCase();" -->
+        <input type="text" name="product[name]" placeholder="Name">
+        <input type="text" name="product[strength]" placeholder="Strength/unit">
+        <input type="text" name="product[form]" placeholder="Form">
+        <button class="btn btn-primary">Add Product</button>
+      </form>
+    </div>
+    <div id="ingredient-options">
+      <h2>My Ingredients</h2>
+      <div class="result-table">
+        <button class="create-ingredient">New Ingredient</button>
+  <div class="result-table">
+        <div class="ingredient-result"></div>
+      </div>
+      </div>
+      <form id="update-ingredient">
+        <div id="ingredientId"></div>
+        <input type="text" name="ingredient[name]" placeholder="Name">
+        <input type="text" name="ingredient[strength]" placeholder="Strength/unit">
+        <input type="text" name="ingredient[form]" placeholder="Form">
+        <input type="text" name="ingredient[ing_type]" placeholder="Type">
+        <button class="btn btn-primary">Update Ingredient</button>
+      </form>
+      <form id="create-ingredient">
+        <h2>Add Ingredient</h2>
+        <!--  onkeyup="this.value = this.value.toLowerCase();" -->
+        <input type="text" name="ingredient[name]" placeholder="Name">
+        <input type="text" name="ingredient[strength]" placeholder="Strength">
+        <input type="text" name="ingredient[form]" placeholder="Form">
+        <input type="text" name="ingredient[ing_type]" placeholder="Type">
+        <button class="btn btn-primary">Add Ingredient</button>
+      </form>
+    </div>
+    <div id="recipe-options">
+
+      <h2>Delete Recipe</h2>
+      <form id="delete-recipe">
+        <input type="number" size="5" name="recipe[id]" placeholder="Ingredient ID">
+        <button class="btn btn-danger">Delete Recipe</button>
+      </form>
+      <p class="recipe-result"></p>
+    </div>
+  </div>
+</body>
+
 </html>
