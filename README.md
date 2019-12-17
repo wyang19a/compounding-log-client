@@ -4,6 +4,11 @@
 https://github.com/wyang19a/pharmacy-api
 Api for the pharmacy formulary app.
 
+### Deployed sites
+
+Client: https://wyang19a.github.io/pharmacy-client/
+API: https://safe-brushlands-23264.herokuapp.com/
+
 ### Unsolved problems
 - Getting recipe update and delete to display updated table on button click.
 - Bootstrap modal not closing on submit.
@@ -16,6 +21,9 @@ Api for the pharmacy formulary app.
 - Javascript
 - Ajax
 - JQuery
+
+### Wireframe
+https://imgur.com/uGBVp3v
 
 ### User stories
 - User should be able to sign up, sign in, sign out, change password
@@ -32,8 +40,6 @@ Api for the pharmacy formulary app.
 - User should be able to see how much of ingredient is used for a product.
 - User should be able to delete a recipe
 
-### Wireframe
-https://imgur.com/uGBVp3v
 
 I feel like I could have done better job planning things before I started working on this project because it changed few times in the middle. My original plan was to make a compunding tracker, but I was advised on planning 1-on-1 that I should start with one resource. So I changed my plan to make a inventory list of medications. Once I made that one resource fully working, I scaffolded two more resources to make it into a compounding tracker. But I couldn't figure out how to make one feature I really wanted for the compounding tracker, so I decided to just make a compounding formulary recipe.
 
