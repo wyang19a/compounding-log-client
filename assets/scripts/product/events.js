@@ -94,7 +94,7 @@ const onSelectIngredient = event => {
   const ingredientId = $(event.target).data('id')
   store.ingredientRcpId = ingredientId
   const productId = store.productRcpId
-  console.log(productId + ' ' + ingredientId)
+  // console.log(productId + ' ' + ingredientId)
   $('#productId1').val(productId)
   $('#ingredientId1').val(ingredientId)
 }

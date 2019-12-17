@@ -39,7 +39,7 @@ const onSignInSuccess = responseData => {
   onSuccess('You are signed in!')
   $('.after-auth').show()
   $('.before-auth').hide()
-  console.log('stored token is' + store.user.token)
+  // console.log('stored token is' + store.user.token)
 }
 
 const onSignInFailure = () => {
