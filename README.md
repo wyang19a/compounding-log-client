@@ -7,7 +7,6 @@ Api for the pharmacy formulary app.
 ### Deployed sites
 
 Client: https://wyang19a.github.io/pharmacy-client/
-
 API: https://safe-brushlands-23264.herokuapp.com/
 
 ### Unsolved problems
@@ -23,7 +22,7 @@ API: https://safe-brushlands-23264.herokuapp.com/
 - Ajax
 - JQuery
 
-### Wireframe
+### Wireframe  
 https://imgur.com/uGBVp3v
 
 ### User stories
