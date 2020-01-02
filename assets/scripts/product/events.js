@@ -66,6 +66,7 @@ const onDeleteProduct = event => {
 }
 
 const onShowUpdateProduct = event => {
+  store.productId = ''
   const productId = $(event.target).data('id')
   store.productId = productId
   $('#productId').text('ID: ' + productId)
@@ -81,12 +82,14 @@ const onAddIngToRecipe = event => {
   store.productRcpId = productRcpId
   api.getOneProduct(productRcpId)
     .then(ui.onGetProductSuccess)
-    .then(ingredientApi.getAllIngredients()
-      .then(ui.onShowIngredientSelectTable)
-    )
-    .then(
-      api.getOneProduct(productId)
-        .then(ui.onGetProductSuccess))
+    .then(function () {
+      return ingredientApi.getAllIngredients()
+    })
+    .then(ui.onShowIngredientSelectTable)
+    .then(function () {
+      return api.getOneProduct(productId)
+    })
+    .then(ui.onGetProductSuccess)
     .catch(ui.onGetProductFailure)
 }
 
@@ -117,7 +120,13 @@ const onDeleteRcp = event => {
 const onClose = () => {
   $('form').trigger('reset')
 }
-
+$('.submit-ingredient-btn').on('click', function () {
+  // Coding
+  $('#addIngredientModal').modal('toggle') // or  $('#IDModal').modal('hide');
+  // const productRcpId = $('#productId1').html()
+  // console.log(productRcpId)
+  // onAddIngToRecipe(productRcpId)
+})
 const addHandlers = event => {
   $('.get-products').on('click', onGetProducts)
   $('.product-result').on('click', '.get-products-btn', onGetProducts)
