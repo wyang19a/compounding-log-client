@@ -16,10 +16,10 @@
 - User should be able to see all, or one `ingredient`.
 - User should be able to create a new `ingredient`.
 - User should be able to edit and delete an `ingredient`.
-- User should be able to make a new `recipe` with created `product` and `ingredient`
-  - User should be able to specify amount and unit for the `recipe` being created.
-- User should be able to delete a `recipe`
-
+- User should be able to make a new `recipe` with created `product` and `ingredient`.
+  - User should be able to specify `amount` and `unit` for the `recipe` being created.
+- User should be able to see `amount` and `unit` recorded for `recipe`.
+- User should be able to delete a `recipe`.
 
 ### Wireframe
 https://imgur.com/uGBVp3v
@@ -32,7 +32,11 @@ https://imgur.com/uGBVp3v
 - Ajax
 - JQuery
 
-### Unsolved problems
-- Getting recipe update and delete to display updated table on button click.
-- Bootstrap modal not closing on submit.
-- Table scroll and search (I couldn't link mdbootstrap)
+
+
+### TODOS
+- Recipe `UPDATE` and `DELETE` refreshes the list.
+- Fix bootstrap modal not closing on submit.
+
+### Thoughts
+It was challenging for me to implement all the CRUD routes properly between three resources I had, but it was a great practice designing my own RESTful API and connecting it to frontend. I had lots of struggle and small successes while working on this project.
