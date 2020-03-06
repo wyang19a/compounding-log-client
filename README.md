@@ -8,19 +8,18 @@
 * [Deployed API](https://safe-brushlands-23264.herokuapp.com/)
 
 ### User stories
-- User should be able to sign up, sign in, sign out, change password
-- User should be able to make a new product
-- User should be able to delete a product
-- User should be able to update a product
-- User should be able to see product list
-- User should be able to see product with ingredient list for the product
-- User should be able to make a new ingredient
-- User should be able to delete an ingredient
-- User should be able to update an ingredient
-- User should be able to see ingredient list
-- User should be able to make a new recipe with created product and ingredient
-- User should be able to see how much of ingredient is used for a product.
-- User should be able to delete a recipe
+- User should be able to sign up, sign in, sign out, change password.
+- User should be able to see all, or one `product`.
+  - User should be able to see product with detailed ingredient list for the `product`.
+- User should be able to create a new `product`.
+- User should be able to edit, delete a `product`.
+- User should be able to see all, or one `ingredient`.
+- User should be able to create a new `ingredient`.
+- User should be able to edit and delete an `ingredient`.
+- User should be able to make a new `recipe` with created `product` and `ingredient`
+  - User should be able to specify amount and unit for the `recipe` being created.
+- User should be able to delete a `recipe`
+
 
 ### Wireframe
 https://imgur.com/uGBVp3v
