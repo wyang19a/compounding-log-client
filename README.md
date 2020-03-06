@@ -1,6 +1,4 @@
-# Pharmacy compounding formulary
-
-
+# CompoundingTracker
 
 ### Deployed sites
 * [Deployed Client](https://wyang19a.github.io/pharmacy-client/)
