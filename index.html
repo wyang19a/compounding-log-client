@@ -62,11 +62,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav ml-auto">
-          <a class="nav-link get-products">Products</a>
-          <a id="get-ingredients" class="nav-link">Ingredients</a>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Account
+              Account
             </a>
             <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
@@ -81,7 +79,6 @@
   </nav>
   <!-- <h1>Rails Pharmacy</h1> -->
   </br>
-  <div id="message"></div>
   <div class="before-auth">
     <h3>Sign Up</h3>
     <form id="sign-up">
@@ -104,57 +101,71 @@
       <input type="password" size="15" name="passwords[new]" placeholder="new password">
       <button class="btn btn-primary">Submit</button>
     </form>
-    <!-- <button id="show-recipe-options" class="btn btn-primary">Recipe</button> -->
-    <div id="product-options">
-      <h2>My products</h2>
-      <button class="create-product">New Product</button>
-      <div class="result-table">
-        <div class="product-result"></div>
-        <div class="select-ingredient-table"></div>
+  <div class="col-sm-12">
+    <div id="message"></div>
+    <!-- left menu -->
+    <div class="col-sm-12">
+  </div>
+      <div class=" menu-l col-sm-3">
+        <div class="get-products">Products</div>
+        <div class="create-product">New Product</div>
+        <br />
+        <div id="get-ingredients" class="get-ingredients">Ingredients</div>
       </div>
-      <form id="update-product">
-        <div id="productId"></div>
-        <!-- <input class="id-input" type="number" name="product[id]" placeholder="Product ID"> -->
-        <input type="text" name="product[name]" placeholder="Name">
-        <input type="text" name="product[strength]" placeholder="Strength/unit">
-        <input type="text" name="product[form]" placeholder="Form">
-        <button class="btn btn-primary">Update Product</button>
-      </form>
-      <form id="create-product">
-        <!-- onkeyup="this.value = this.value.toLowerCase();" -->
-        <input type="text" name="product[name]" placeholder="Name">
-        <input type="text" name="product[strength]" placeholder="Strength/unit">
-        <input type="text" name="product[form]" placeholder="Form">
-        <button class="btn btn-primary">Add Product</button>
-      </form>
-    </div>
-    <div id="ingredient-options">
-      <h2>My Ingredients</h2>
-      <div class="result-table">
-        <button class="create-ingredient">New Ingredient</button>
-        <div class="result-table">
-          <div class="ingredient-result"></div>
+      <div class="col-sm-10">
+        <!-- <button id="show-recipe-options" class="btn btn-primary">Recipe</button> -->
+        <div id="product-options">
+          <div class="result-table">
+            <div class="product-result"></div>
+            <div class="select-ingredient-table"></div>
+          </div>
+          <form id="update-product">
+            <div id="productId"></div>
+            <!-- <input class="id-input" type="number" name="product[id]" placeholder="Product ID"> -->
+            <input type="text" name="product[name]" placeholder="Name">
+            <input type="text" name="product[strength]" placeholder="Strength/unit">
+            <input type="text" name="product[form]" placeholder="Form">
+            <button class="btn btn-primary">Update Product</button>
+          </form>
+          <form id="create-product">
+            <!-- onkeyup="this.value = this.value.toLowerCase();" -->
+            <input type="text" name="product[name]" placeholder="Name">
+            <input type="text" name="product[strength]" placeholder="Strength/unit">
+            <input type="text" name="product[form]" placeholder="Form">
+            <button class="btn btn-primary">Add Product</button>
+          </form>
+        </div>
+        <div id="ingredient-options">
+          <h2>My Ingredients</h2>
+          <div class="result-table">
+            <button class="create-ingredient">New Ingredient</button>
+            <div class="result-table">
+              <div class="ingredient-result"></div>
+            </div>
+          </div>
+          <form id="update-ingredient">
+            <div id="ingredientId"></div>
+            <input type="text" name="ingredient[name]" placeholder="Name">
+            <input type="text" name="ingredient[strength]" placeholder="Strength/unit">
+            <input type="text" name="ingredient[form]" placeholder="Form">
+            <input type="text" name="ingredient[ing_type]" placeholder="Type">
+            <button class="btn btn-primary">Update Ingredient</button>
+          </form>
+          <form id="create-ingredient">
+            <h2>Add Ingredient</h2>
+            <!--  onkeyup="this.value = this.value.toLowerCase();" -->
+            <input type="text" name="ingredient[name]" placeholder="Name">
+            <input type="text" name="ingredient[strength]" placeholder="Strength">
+            <input type="text" name="ingredient[form]" placeholder="Form">
+            <input type="text" name="ingredient[ing_type]" placeholder="Type">
+            <button class="btn btn-primary">Add Ingredient</button>
+          </form>
         </div>
       </div>
-      <form id="update-ingredient">
-        <div id="ingredientId"></div>
-        <input type="text" name="ingredient[name]" placeholder="Name">
-        <input type="text" name="ingredient[strength]" placeholder="Strength/unit">
-        <input type="text" name="ingredient[form]" placeholder="Form">
-        <input type="text" name="ingredient[ing_type]" placeholder="Type">
-        <button class="btn btn-primary">Update Ingredient</button>
-      </form>
-      <form id="create-ingredient">
-        <h2>Add Ingredient</h2>
-        <!--  onkeyup="this.value = this.value.toLowerCase();" -->
-        <input type="text" name="ingredient[name]" placeholder="Name">
-        <input type="text" name="ingredient[strength]" placeholder="Strength">
-        <input type="text" name="ingredient[form]" placeholder="Form">
-        <input type="text" name="ingredient[ing_type]" placeholder="Type">
-        <button class="btn btn-primary">Add Ingredient</button>
-      </form>
     </div>
-  </div>
 </body>
+<footer>
+  <div id="message"></div>
+</footer>
 
 </html>
